@@ -29,7 +29,7 @@ public class BController {
 		return "list";
 	}
 	
-	@RequestMapping("/wirte_view")
+	@RequestMapping("/write_view")
 	public String write_view(Model model){
 		System.out.println("write_view()");
 		
