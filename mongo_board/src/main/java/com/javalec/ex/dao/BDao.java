@@ -25,8 +25,8 @@ public class BDao {
 		MongoClient mongoClient = new MongoClient("127.0.0.1",27017);
 		
 		@SuppressWarnings("deprecation")
-		DB db = mongoClient.getDB("springex");
-		DBCollection collection = db.getCollection("mvc_board");
+		DB db = mongoClient.getDB("mongospring");
+		DBCollection collection = db.getCollection("Member");
 		BasicDBObject query = new BasicDBObject();
 		query.put("bId", strID);
 		
@@ -68,8 +68,8 @@ public class BDao {
 			MongoClient mongoClient = new MongoClient("127.0.0.1",27017);
 			
 			@SuppressWarnings("deprecation")
-			DB db = mongoClient.getDB("springex");
-			DBCollection collection = db.getCollection("mvc_board");	
+			DB db = mongoClient.getDB("mongospring");
+			DBCollection collection = db.getCollection("Member");	
 			
 			System.out.println("connect to database!");
 			
@@ -104,8 +104,8 @@ public class BDao {
 		MongoClient mongoClient = new MongoClient("127.0.0.1",27017);
 		
 		@SuppressWarnings("deprecation")
-		DB db = mongoClient.getDB("springex");
-		DBCollection collection = db.getCollection("mvc_board");
+		DB db = mongoClient.getDB("mongospring");
+		DBCollection collection = db.getCollection("Member");
 		DBCursor cursor = collection.find();
 		
 		try{

@@ -32,7 +32,15 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+		
+		<!-- Spring Data MongoDB -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.7.1.RELEASE</version>
+		</dependency>
+		
+		<!--mongo-java-driver -->
 		<dependency>
 		    <groupId>org.mongodb</groupId>
 		    <artifactId>mongo-java-driver</artifactId>
