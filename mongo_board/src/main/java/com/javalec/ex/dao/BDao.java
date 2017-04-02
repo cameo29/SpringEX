@@ -25,8 +25,8 @@ public class BDao {
 		MongoClient mongoClient = new MongoClient("127.0.0.1",27017);
 		
 		@SuppressWarnings("deprecation")
-		DB db = mongoClient.getDB("mongospring");
-		DBCollection collection = db.getCollection("Member");
+		DB db = mongoClient.getDB("springex");
+		DBCollection collection = db.getCollection("mvc_board");
 		BasicDBObject query = new BasicDBObject();
 		query.put("bId", strID);
 		
@@ -68,13 +68,13 @@ public class BDao {
 			MongoClient mongoClient = new MongoClient("127.0.0.1",27017);
 			
 			@SuppressWarnings("deprecation")
-			DB db = mongoClient.getDB("mongospring");
-			DBCollection collection = db.getCollection("Member");	
+			DB db = mongoClient.getDB("springex");
+			DBCollection collection = db.getCollection("mvc_board");	
 			
 			System.out.println("connect to database!");
 			
 			BasicDBObject doc = new BasicDBObject().
-					append("bId", 2).
+					append("bId", 3).
 					append("bName", bName).
 		            append("bTitle", bTitle).
 		            append("bContent", bContent);
@@ -104,8 +104,8 @@ public class BDao {
 		MongoClient mongoClient = new MongoClient("127.0.0.1",27017);
 		
 		@SuppressWarnings("deprecation")
-		DB db = mongoClient.getDB("mongospring");
-		DBCollection collection = db.getCollection("Member");
+		DB db = mongoClient.getDB("springex");
+		DBCollection collection = db.getCollection("mvc_board");
 		DBCursor cursor = collection.find();
 		
 		try{
@@ -122,10 +122,10 @@ public class BDao {
 				String bTitle = map.get("bTitle").toString();
 				String bContent = map.get("bContent").toString();
 				
-				if(map.get("bHit") != null) bHit =((Number)map.get("bHit")).intValue();
+				/*if(map.get("bHit") != null) bHit =((Number)map.get("bHit")).intValue();
 				if(map.get("bGroup") != null) bGroup =((Number)map.get("bGroup")).intValue();
 				if(map.get("bStep") != null) bStep =((Number)map.get("bStep")).intValue();
-				if(map.get("bIndent") != null) bIndent =((Number)map.get("bIndent")).intValue();
+				if(map.get("bIndent") != null) bIndent =((Number)map.get("bIndent")).intValue();*/
 				
 				BDto dto = new BDto(bId, bName, bTitle, bContent, bHit, bGroup, bStep, bIndent);
 				dtos.add(dto);
@@ -137,5 +137,49 @@ public class BDao {
 			cursor.close();
 		}
 		return dtos;
+	}
+	
+	public void modify(int bId,String bName,String bTitle,String bContent){
+		try{
+			MongoClient mongoClient = new MongoClient("127.0.0.1",27017);
+			
+			@SuppressWarnings("deprecation")
+			DB db = mongoClient.getDB("springex");
+			DBCollection collection = db.getCollection("mvc_board");	
+			
+			System.out.println("connect to database!");
+			BasicDBObject query = new BasicDBObject("bId",bId);
+			BasicDBObject doc = new BasicDBObject().
+					append("bId", 2).
+					append("bName", bName).
+		            append("bTitle", bTitle).
+		            append("bContent", bContent);
+						
+			collection.update(query,doc);
+		    System.out.println("Document inserted successfully");
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void delete(int bId){
+		try{
+			MongoClient mongoClient = new MongoClient("127.0.0.1",27017);
+			
+			@SuppressWarnings("deprecation")
+			DB db = mongoClient.getDB("springex");
+			DBCollection collection = db.getCollection("mvc_board");	
+			
+			System.out.println("connect to database!");
+			BasicDBObject query = new BasicDBObject("bId",bId);
+
+			collection.remove(query);
+		    System.out.println("Document delete successfully");
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		
 	}
 }

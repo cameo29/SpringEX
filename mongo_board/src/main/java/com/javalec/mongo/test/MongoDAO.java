@@ -2,6 +2,8 @@ package com.javalec.mongo.test;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
+import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 
 public class MongoDAO {
 	private MongoTemplate mongoTemplate;
@@ -16,12 +18,12 @@ public class MongoDAO {
 		testVO.setbName("yang");
 		testVO.setbTitle("datamongo");
 		testVO.setbContent("success");
-		
-		mongoTemplate.insert(testVO,"Member");
+		((MappingMongoConverter)mongoTemplate.getConverter()).setTypeMapper(new DefaultMongoTypeMapper(null));//class 필드 지우기
+		mongoTemplate.insert(testVO,"mvc_board");
 	}
 	
 	public class TestVO{
-		@Id
+		
 		private int bId;
 		private String bName;
 		

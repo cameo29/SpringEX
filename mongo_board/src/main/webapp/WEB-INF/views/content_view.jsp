@@ -10,7 +10,7 @@
 
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 		<form action="modify" method="post">
-			<input type="hidden" name="bId" value="${content_view.bId}">
+			<input type="text" name="bId" value="${content_view.bId}">
 			<tr>
 				<td> 번호 </td>
 				<td> ${content_view.bId} </td>

@@ -1,16 +1,23 @@
 package com.javalec.mongo.test;
 
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class MongoTest {
-	private MongoTemplate mongoTemplate;
-	public MongoTest(){
-		
-	}
+
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		MongoTest mongoTest = new MongoTest();
-		System.out.println(mongoTest.mongoTemplate);
+		String url = "mongoContext.xml";
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext(url);
+		MongoDAO dao = ctx.getBean("mongoDAO", MongoDAO.class);
+		
+		if(dao == null){
+		    System.out.println("NULL!!!");
+		}
+		else {
+		    System.out.println("NOT NULL!!");
+		    dao.insertTestVO();
+		}
+
+
 	}
 
 }
